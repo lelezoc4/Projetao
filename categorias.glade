@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <!-- Modelo de dados da tabela: id, nome e tipo (texto) de cada categoria -->
+  <object class="GtkListStore" id="lst_categorias">
+    <columns>
+      <column type="gint64"/>
+      <column type="gchararray"/>
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="janela">
+    <property name="title">Categorias — Finanças da Família</property>
+    <property name="default-width">480</property>
+    <property name="default-height">460</property>
+    <property name="window-position">center</property>
+    <child>
+      <object class="GtkBox" id="box_principal">
+        <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
+        <property name="margin-start">16</property>
+        <property name="margin-end">16</property>
+        <property name="margin-top">16</property>
+        <property name="margin-bottom">16</property>
+        <child>
+          <object class="GtkLabel" id="lbl_titulo">
+            <property name="label">&lt;b&gt;Cadastro de categorias&lt;/b&gt;</property>
+            <property name="use-markup">True</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grd_formulario">
+            <property name="row-spacing">8</property>
+            <property name="column-spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="lbl_nome">
+                <property name="label">Nome</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="ent_nome">
+                <property name="hexpand">True</property>
+                <property name="max-length">40</property>
+                <property name="placeholder-text">Ex.: Mercado</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lbl_tipo">
+                <property name="label">Tipo</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="cmb_tipo">
+                <property name="active-id">D</property>
+                <items>
+                  <item id="R">Receita</item>
+                  <item id="D">Despesa</item>
+                </items>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="box_botoes">
+            <property name="spacing">8</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkButton" id="btn_gravar">
+                <property name="label">Gravar</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_editar">
+                <property name="label">Editar</property>
+                <property name="sensitive">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_excluir">
+                <property name="label">Excluir</property>
+                <property name="sensitive">False</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lbl_mensagem">
+            <property name="label">Preencha o nome e o tipo e clique em Gravar.</property>
+            <property name="xalign">0</property>
+            <property name="wrap">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scr_tabela">
+            <property name="vexpand">True</property>
+            <property name="shadow-type">in</property>
+            <child>
+              <object class="GtkTreeView" id="tvw_categorias">
+                <property name="model">lst_categorias</property>
+                <child>
+                  <object class="GtkTreeViewColumn" id="col_id">
+                    <property name="title">Id</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="rnd_id"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="col_nome">
+                    <property name="title">Nome</property>
+                    <property name="expand">True</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="rnd_nome"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="col_tipo">
+                    <property name="title">Tipo</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="rnd_tipo"/>
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
